@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# 🤮 we succumb to wasm-pack's bloated build
+wasm-pack build --target web
+
+# 🩹 fix the javascript file for modernity
+echo "await init();" >> pkg/rust.js
+
+# 🗑️ clean up unwanted garbage
+rm pkg/.gitignore pkg/package.json
