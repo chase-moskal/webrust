@@ -12,9 +12,10 @@
 	],
 	"main": "x/main.js",
 	"scripts": {
-		"build": "run-s clean compile-rust && run-p compile-typescript importly",
+		"build": "run-s clean compile-rust && run-p compile-wat compile-typescript importly",
 		"clean": "rimraf x rust/pkg && mkdirp x",
 		"compile-rust": "(cd rust && ./build)",
+		"compile-wat": "wat2wasm s/example.wat -o x/example.wasm",
 		"compile-typescript": "tsc",
 		"importly": "importly < package-lock.json > x/importmap.json",
 		"watch": "tsc -w",
@@ -31,6 +32,7 @@
 		"mkdirp": "^1.0.4",
 		"npm-run-all": "^4.1.5",
 		"rimraf": "^3.0.2",
-		"typescript": "^4.7.2"
+		"typescript": "^4.7.2",
+		"wabt": "^1.0.29"
 	}
 }
